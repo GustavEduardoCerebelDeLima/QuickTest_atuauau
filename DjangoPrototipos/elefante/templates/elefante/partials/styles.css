@@ -34,6 +34,12 @@
   color: #fff;
 }
 
+#submit{
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
 body{
     background-color: #5ce1e6;
     font-family: "Lato", sans-serif;
@@ -69,15 +75,15 @@ body{
     position: fixed;
     top: 15%;
     left: 30%;
-    margin: -20px 0 0 -20px; 
+    margin: -20px 0 0 -20px;
   }
-  
+
   .main {
     margin-left: 160px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
   }
-  
+
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}

@@ -8,41 +8,53 @@
     <title>Criação</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>{% include 'elefante/partials/styles.css' %}</style>
-    <script type="module"> {% include 'elefante/partials/script.js' %} </script>
+    <script>
+      function save() {
+        let coisa = document.getElementById("id_prova")
+        let questoes = document.getElementsByClassName("questao")
+        for (var i=0; i < questoes.length; i++) {
+            let attr = questoes[i].attributes
+            console.log(document.getElementById(`${attr.id.value}`).innerHTML)
+            coisa.value += `id: "${attr.id.value}" - class: "${attr.class.value}"\n`;
+        }
+        document.getElementById("area2").requestSubmit()
+      }
+    </script>
+    <script type="module">{% include 'elefante/partials/script.js' %}</script>
 </head>
 <body>
-    
+
     <div class="w3-container">
-      
+
         <div class="w3-bar w3-section w3-black w3-card-4">
           <a href='/' class="w3-bar-item w3-button w3-green w3-hover-red w3-padding-16">Home</a>
           <a class="w3-bar-item w3-button w3-hover-red w3-padding-16">Link 1</a>
           <a class="w3-bar-item w3-button w3-hover-red w3-padding-16">Link 2</a>
         </div>
       </div>
-    
+
       <div class="sidenav">
         <div id="1" class="modelo">
             <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
             <div id="1header" class="thing">Modelo 1</div>
         </div>
-    
+
         <div id="2" class="modelo" style="top: 70px;">
             <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
             <div id="2header" class="thing">Modelo 2</div>
         </div>
-    
+
         <div id="3" class="modelo" style="top: 120px;">
             <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
             <div id="3header" class="thing">Modelo 3</div>
         </div>
       </div>
-      
+
       <div class="pag">
         <form id="area2" class="child" action="." method="POST">
             {% csrf_token %}
-            {{form|crispy}}
-            <input type="submit" value="Salvar">
+            <textarea name="questoes" id="id_prova" style="visibility: hidden;" {% if form.questoes.value != None %}value="{{ form.questoes.value|stringformat:'s' }}"{% endif %} required></textarea>
+            <input type="button" value="Salvar" onclick="save()" id="submit">
         </form>
       </div>
 
