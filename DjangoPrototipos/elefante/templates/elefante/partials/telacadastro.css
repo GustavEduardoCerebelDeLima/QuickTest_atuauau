@@ -7,8 +7,7 @@
     font-family: "poppins", sans-serif;
 }
 body{
-    background: linear-gradient(45deg, #30e69a, #78f3bf);
-    background-repeat: no-repeat;
+    background-color: #5ce1e6;
     min-height: 100vh;
     min-width: 100vw;
     display: flex;
@@ -49,7 +48,7 @@ main h2::before{
     bottom: 1px;
     left: 0;
     border-radius: 8px;
-    background: linear-gradient(45deg, #30e69a, #78f3bf);
+    background-color: #5ce1e6;
 }
 
 .input-field{
@@ -105,18 +104,19 @@ form {
 form input[type="submit"] {
     margin-top: 2rem;
     padding: 0.4rem;
-    background: linear-gradient(to left, #50e4a6, #78f3bf);
+    background-color: #5ce1e6;
     cursor: pointer;
     color: white;
     font-size: 0.9rem;
     font-weight: 500;
     border-radius: 4px;
-    transition: all 0.3s ease; 
+    transition: all 0.3s ease;
 }
 
 form input[type="submit"]:hover{
     letter-spacing: 0.5px;
-    background: linear-gradient(to left, #5bf3b4, #78f3bf);
+    background: linear-gradient(to left, #5ce1e6, #5ce1e6);
+
 
 }
 
