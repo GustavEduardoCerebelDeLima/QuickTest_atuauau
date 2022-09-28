@@ -23,8 +23,8 @@ class PaperQuestion(models.Model):
 
 class dados_cadastro(models.Model):
     id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=30, required=False)
-    email = models.EmailField()
+    nome = models.CharField(max_length=30)
+    email = models.EmailField(unique=True)
     senha = models.CharField(max_length=20)
     
     def __str__(self):

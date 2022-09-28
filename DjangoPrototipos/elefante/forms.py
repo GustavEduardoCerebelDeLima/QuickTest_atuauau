@@ -1,5 +1,6 @@
 from .models import *
 from django.forms import ModelForm
+from django.core.exceptions import ValidationError
 
 class Cadastro(forms.Form):
     class Meta:
@@ -23,3 +24,12 @@ class cadaa(ModelForm):
             'email',
             'senha',
         ]
+
+    def clean_email(self):
+        e = self.cleaned_data['email']
+        if dados_cadastro.objects.filter(email=e).exists():
+            raise ValidationError("O email já está em uso.".format(e))
+        
+
+        
+

@@ -160,8 +160,8 @@ form input[type="submit"]:hover{
     color: white;
 }
 
-.footer .social-field.facebook{
-    background: linear-gradient(to left, #4ba4f7, #468aca);
+.footer .social-field.google{
+        background: linear-gradient(to left, #be6156, #be6156);
 }
 
 .footer .social-field.linkedin{
