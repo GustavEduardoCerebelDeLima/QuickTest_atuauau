@@ -1,12 +1,22 @@
 from .models import *
 from django.forms import ModelForm
-from django.core.exceptions import ValidationError
+from django import forms
 
-class Cadastro(forms.Form):
+class Cadastro(ModelForm):
     class Meta:
         model = Paper
         fields = [
-            'questoes',
+            'usuario',
+            'tipo_user',
+            'id_prova',
+            'tipo_questao',
+            'numero_questao',
+            'enunciado',
+            'letra_questao',
+            'texto1',
+            'texto2',
+            'alt_marcada',
+            'alt_erradas',
         ]
 
 class Registro(forms.Form):
@@ -18,17 +28,12 @@ class cadaa(ModelForm):
     nome = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Digite seu nome'}))
     email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder':'Digite seu email'}))
     class Meta:
-        model = dados_cadastro
+        model = DadosCadastro
         fields = [
             'nome',
             'email',
             'senha',
         ]
-
-    def clean_email(self):
-        e = self.cleaned_data['email']
-        if dados_cadastro.objects.filter(email=e).exists():
-            raise ValidationError("O email já está em uso.".format(e))
         
 
         

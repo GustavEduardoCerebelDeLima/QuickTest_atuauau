@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import dados_cadastro, Paper
+from .models import DadosCadastro, Paper, Prova
 
 # Register your models here.
 admin.site.register(Paper)
-admin.site.register(dados_cadastro)
+admin.site.register(DadosCadastro)
+admin.site.register(Prova)

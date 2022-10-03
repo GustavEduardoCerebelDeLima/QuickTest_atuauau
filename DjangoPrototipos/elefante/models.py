@@ -1,35 +1,46 @@
 from django.db import models
-from django import forms
 
 # Create your models here.
-class Paper(models.Model):
-    id_paper = models.AutoField(primary_key=True)
-    # title = models.CharField(max_length=255)
-    questoes = models.TextField()
-
-class Question(models.Model):
-    descrition = models.TextField()
-    answer = models.TextField()
-    papers = models.ManyToManyField(Paper, through='PaperQuestion')
-
-
-class PaperQuestion(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.PROTECT)
-    paper = models.ForeignKey(Paper, on_delete=models.PROTECT)
-    active = models.BooleanField()
-    order = models.IntegerField()
-    class Meta():
-        ordering = ['order']
-
-class dados_cadastro(models.Model):
+class DadosCadastro(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=30)
-    email = models.EmailField(unique=True)
+    email = models.EmailField()
     senha = models.CharField(max_length=20)
-    
+
     def __str__(self):
         return self.nome
 
 
-    
-    
+class Prova(models.Model):
+    id = models.AutoField(primary_key=True)
+    dono = models.ForeignKey(DadosCadastro, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return str(self.id)
+
+
+class Paper(models.Model):
+    TIPOS_USER = (
+        ("C", "Criador"),
+        ("A", "Aluno")
+    )
+
+    TIPOS_QUESTAO = (
+        ("tipo1", "Combo"),
+        ("tipo2", "Multipla"),
+        ("tipo3", "Ligar"),
+    )
+
+    id = models.AutoField(primary_key=True)
+    usuario = models.ForeignKey(DadosCadastro, on_delete=models.DO_NOTHING)
+    tipo_user = models.CharField(max_length=1, choices=TIPOS_USER)
+    id_prova = models.ForeignKey(Prova, on_delete=models.DO_NOTHING)
+    tipo_questao = models.CharField(max_length=5, choices=TIPOS_QUESTAO)
+    numero_questao = models.IntegerField()
+    enunciado = models.TextField()
+    letra_questao = models.CharField(max_length=1)
+    texto1 = models.TextField()
+    texto2 = models.TextField()
+    alt_marcada = models.TextField()
+    alt_erradas = models.TextField()
+    correto = models.BooleanField()

@@ -16,7 +16,7 @@ body{
     height: 11vh;
     max-width: 100%;
     flex-direction: row;
-    background-color: #03989e;
+    background-color: #08b8be;
 }
 
 .logo img{
@@ -38,15 +38,19 @@ body{
 }
 
 .salvar {
-    background-color: #4ec698;
+    background-color: #51cdd1;
     color: #fff;
     border: none;
     border-radius: 2px;
     width: 60px;
+    font-family: Arial;
+    font-size: small;
+    text-align: center;
+    padding: 10px;
 }
 
 .compartilhar{
-    background-color: #4ec698;
+    background-color: #51cdd1;
     color: #fff;
     border: none;
     border-radius: 2px;
@@ -54,11 +58,11 @@ body{
     height: 40px;
 }
 
-.questao{
+.questoes{
     position: fixed;
     width: 23%;
     height: 100%;
-    background-color: #1eb09f;
+    background-color: #49b6e0;
     z-index: 1;
     position: fixed;
 }
@@ -68,7 +72,7 @@ body{
     width: 23%;
     position: fixed;
     z-index: 1;
-    background-color: #1eb09f;
+    background-color: #49b6e0;
     padding-top: 20px;
     margin-left: 77%;
   }
@@ -81,6 +85,8 @@ body{
     top: 18%;
     left: 31%;
     margin: -20px 0 0 -20px;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   .pesquisar input{

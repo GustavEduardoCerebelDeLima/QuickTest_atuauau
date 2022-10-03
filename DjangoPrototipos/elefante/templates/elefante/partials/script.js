@@ -53,18 +53,25 @@ function dragElement(elmnt) {
 
   function closeDragElement() {
     // stop moving when mouse button is released:
-    let limite = document.getElementById("area2").getBoundingClientRect()
+    let limite = document.getElementById("criacao").getBoundingClientRect()
     let rect = elmnt.getBoundingClientRect()
     if (rect['bottom'] < limite['bottom'] && rect['top'] > limite['top'] && rect['right'] < limite['right'] && rect['left'] > limite['left']){
-      let newItems = document.getElementById("area2")
+      let newItems = document.getElementById("criacao")
       let newEl = elmnt.cloneNode(true)
       newEl.style.top =  ((newItems.childElementCount - 3) * 50) + 'px'
-      newEl.style.left = (limite.width / 2) - (rect.width / 2) + 'px'
-      newEl.className = `questao tipo${newEl.id.slice(-1)}`
-      newEl.id = 'questao' + (newItems.childElementCount - 2)
-      newEl.innerHTML = 'Question ' + (newItems.childElementCount - 2)
+      newEl.style.left = '0'
+      newEl.style.right = '0'
+      newEl.style.margin = '0 auto'
+      newEl.style.marginBottom = '15px'
+      let tipo = 'tipo' + newEl.id.slice(-1)
+      newEl.id = (newItems.childElementCount - 2)
+      newEl.className = `questao ${tipo}`
+      newEl.innerHTML = `<div style="display: flex; flex-wrap: wrap;"><textarea id="enunciado" style="width: calc(100% - 48px);"></textarea>` + `<input id="${newEl.id}_button_mais" style="margin-left: auto; height: 24px; width: 24px" type="button" value="+" onclick="mais('${tipo}', '${newEl.id}')">` + `<input id="${newEl.id}_button_menos" style="height: 24px; width: 24px" type="button" value="-" onclick="menos('${newEl.id}')"></div><ol class="lista" type="a" id="${newEl.id}list">`
 
-      newItems.appendChild(newEl)
+      newItems.prepend(newEl)
+
+      let novo = document.getElementById(newEl.id)
+      document.getElementsByName("csrfmiddlewaretoken")[0].before(novo)
     }
 
     elmnt.style.top = originalTop + "px";
@@ -73,8 +80,8 @@ function dragElement(elmnt) {
     document.onmouseup = null;
     document.onmousemove = null;
 
-    for (let items in document.getElementsByClassName("questao")) {
-      dragOrder(document.getElementsByClassName("questao")[items]);
-    }
+    // for (let items in document.getElementsByClassName("questao")) {
+    //   dragOrder(document.getElementsByClassName("questao")[items]);
+    // }
   }
 }

@@ -1,38 +1,171 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tela de criação</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://kit.fontawesome.com/5dd5fe0132.js" crossorigin="anonymous"></script>
   <style>{% include 'elefante/partials/telacriacao.css' %}</style>
+  <style>{% include 'elefante/partials/styles.css' %}</style>
+  <script src="https://kit.fontawesome.com/5dd5fe0132.js" crossorigin="anonymous"></script>
+  <script>
+
+    function save() {
+      // let coisa = document.getElementById("id_prova")
+      let questoes = document.getElementsByClassName("questao")
+      for (var i=0; i < questoes.length; i++) {
+        document.getElementById('id_tipo_questao').value = questoes[i].className.split(" ")[1]
+        document.getElementById('id_numero_questao').value = i + 1
+        document.getElementById('id_enunciado').value = questoes[i].childNodes[0].childNodes[0].value
+
+        let children = questoes[i].getElementsByClassName("linha")
+        for (var j=0; j < children.length; j++){
+
+        }
+      }
+
+      // document.getElementById("criacao").requestSubmit()
+    }
+
+    function mais(tipo, nome_id){
+      nome_id = nome_id + 'list'
+      let modelo = document.createElement('li')
+      modelo.className = 'linha'
+      const modelos = {
+      'tipo1': `<label for="calculo"> <input type="text" name="" id=""> </label>
+  <select name="calculo" id="calculo" onclick="checkAndAddOption(this)">
+    <option value="new">novo</option>
+    <option value="remove">remover</option>
+  </select>
+  <label for="calculo"> <input type="text" name="" id="" placeholder="opcional"> </label>`,
+
+      'tipo2': `<label> <input type="text" name="" id=""> </label>
+            <label class="container">
+                <input type="radio" checked="checked" name="${nome_id}-radio${document.getElementById(nome_id).childElementCount}">
+                <textarea style="height: 18px; resize: none; max-width: 50px;"></textarea>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                <input type="radio" name="${nome_id}-radio${document.getElementById(nome_id).childElementCount}">
+                <textarea style="height: 18px; resize: none; max-width: 50px;"></textarea>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                <input type="radio" name="${nome_id}-radio${document.getElementById(nome_id).childElementCount}">
+                <textarea style="height: 18px; resize: none; max-width: 50px;"></textarea>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">
+                <input type="radio" name="${nome_id}-radio${document.getElementById(nome_id).childElementCount}">
+                <textarea style="height: 18px; resize: none; max-width: 50px;"></textarea>
+                <span class="checkmark"></span>
+            </label>
+            <label style="margin-left: 13.788px;"> <input type="text" name="" id="" placeholder="opcional"> </label>`,
+
+      'tipo3': `<div class="pergunta"> <input type="text" name="" id=""> </div>
+            <div class="selecao">
+                <select name="opcao" id="opcao" class="opcoes${nome_id}">
+                    <option value="" selected>?</option>
+                </select>
+            </div>
+            <div class="opcao"><label for="resposta"><input type="text" name="" id=""></label></div>`,
+    }
+      modelo.innerHTML += `${modelos[tipo]}`
+      document.getElementById(nome_id).appendChild(modelo)
+
+      if (tipo === 'tipo3'){
+        opcoes = document.getElementsByClassName(`opcoes${nome_id}`)
+        letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        for (var i=0; i < opcoes.length; i++){
+          for (var j=(opcoes[i].length - 1); j < opcoes.length; j++){
+            opcoes[i].innerHTML += `<option name="op" value="${letras[j]}">${letras[j]}</option>`
+          }
+        }
+      }
+    }
+
+    function menos(nome_id){
+      let documento = document.getElementById(`${nome_id}list`).children
+      if (documento.length < 1){
+        document.getElementById(nome_id).remove()
+      }else {
+      documento[documento.length - 1].remove()
+      }
+    }
+
+    function checkAndAddOption(selectElement) {
+      if (selectElement.value === "new") {
+        var opt = document.createElement('option');
+        valor = prompt('Enter a name for the new thing:')
+        opt.value = valor;
+        opt.innerHTML = valor;
+        selectElement.appendChild(opt);
+        selectElement.value = valor
+      }
+      if (selectElement.value === "remove") {
+        let documento = selectElement.children
+        if (documento.length < 3){
+          {}
+        }else {
+          documento[documento.length - 1].remove()
+          selectElement.value = documento[documento.length - 1].value
+        }
+      }
+    }
+  </script>
+  <script type="module">{}{% include 'elefante/partials/script.js' %}</script>
 </head>
 
 <body>
     <header class="cabeçalho">
       <div class="conteudo-primario">
         <div class="logo">
-            <img src="{% static '/Logo_TCC.png' %}" alt="logo top">
+          <a href="#">
+          <img src="{% static '/Logo_TCC.png' %}" alt="logo do site">
+          </a>
         </div>
         <div class="botoes">
-          <button class="salvar">Salvar</button>
+          <input type="button" class="salvar" value="Salvar" onclick="save()" id="submit">
           <button class="compartilhar">Compartilhar</button>
         </div>
      </div>
     </header>
 
   <main class="conteudo-secundario">
-        <div class="questao">
+        <div class="questoes">
           <div class="pesquisar">
             <input type="text" name="pesquisar" placeholder="Buscar..">
             <i class="fa-solid fa-magnifying-glass"></i>
         </div>
+        <div id="model1" class="modelo" style="top: 73px;">
+          <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+          <div id="1header" class="thing">Modelo 1</div>
+      </div>
+
+      <div id="model2" class="modelo" style="top: 123px;">
+          <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+          <div id="2header" class="thing">Modelo 2</div>
+      </div>
+
+      <div id="model3" class="modelo" style="top: 173px;">
+          <!-- Include a header DIV with the same name as the draggable DIV, followed by "header" -->
+          <div id="3header" class="thing">Modelo 3</div>
+      </div>
         </div>
 
-        <div class="criacao"></div>
+        <form id="criacao" class="criacao" action="." method="POST">
+          {% csrf_token %}
+          <!-- <div style="display:none;"> -->
+            {{form|crispy}}
+            <script>
+              document.getElementById("id_id_prova").value = '{{prova.id}}'
+              document.getElementById("id_tipo_user").value = 'C'
+              document.getElementById("id_usuario").value = '1'
+            </script>
+          <!-- </div> -->
+        </form>
 
         <div class="resposta"></div>
   </main>
