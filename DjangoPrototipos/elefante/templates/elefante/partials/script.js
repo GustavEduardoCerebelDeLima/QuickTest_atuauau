@@ -1,4 +1,3 @@
-// Não falamos do Bruno
 function updatemenu() {
   if (document.getElementById('responsive-menu').checked == true) {
     document.getElementById('menu').style.borderBottomRightRadius = '0';
@@ -66,7 +65,7 @@ function dragElement(elmnt) {
       let tipo = 'tipo' + newEl.id.slice(-1)
       newEl.id = (newItems.childElementCount - 2)
       newEl.className = `questao ${tipo}`
-      newEl.innerHTML = `<div style="display: flex; flex-wrap: wrap;"><textarea id="enunciado" style="width: calc(100% - 48px);"></textarea>` + `<input id="${newEl.id}_button_mais" style="margin-left: auto; height: 24px; width: 24px" type="button" value="+" onclick="mais('${tipo}', '${newEl.id}')">` + `<input id="${newEl.id}_button_menos" style="height: 24px; width: 24px" type="button" value="-" onclick="menos('${newEl.id}')"></div><ol class="lista" type="a" id="${newEl.id}list">`
+      newEl.innerHTML = `<div style="display: flex; flex-wrap: wrap;"><textarea id="enunciado" style="width: calc(100% - 48px); resize: none;"></textarea>` + `<input id="${newEl.id}_button_mais" style="margin-left: auto; height: 24px; width: 24px" type="button" value="+" onclick="mais('${tipo}', '${newEl.id}')">` + `<input id="${newEl.id}_button_menos" style="height: 24px; width: 24px" type="button" value="-" onclick="menos('${tipo}', '${newEl.id}')"></div><ol class="lista" type="a" id="${newEl.id}list">`
 
       newItems.prepend(newEl)
 

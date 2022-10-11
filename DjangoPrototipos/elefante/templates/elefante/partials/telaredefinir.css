@@ -15,11 +15,22 @@ body{
     justify-content: center;
 }
 
+#nao_tenho{
+    float: left;
+}
+#redefinir{
+    float: right;
+}
+
+.rede{
+margin-top: 10%;
+}
+
 main.container{
     background: #fff;
-    width: 350px;
-    height: 40vh;
-    padding: 6rem;
+    min-width: 350px;
+    max-height: 100vh;
+    padding: 5rem;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
 }
@@ -30,22 +41,25 @@ img{
     align-items: center;
     width: 70px;
     height: 50px;
-    margin-top: 0.9rem;
-    padding-bottom: 25px;
+    margin-top: 1rem 1rem 1rem;
+    padding-bottom: 1px 5px 25px;
+
 }
 
 main h2{
     font-weight: 800;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
     position: relative;
 }
+
+
 
 main h2::before{
     content: "";
     position: absolute;
-    height: 4px;
+    height: 3px;
     width: 25px;
-    bottom: 1px;
+    bottom: 4px;
     left: 0;
     border-radius: 8px;
     background-color: #5ce1e6;
@@ -61,12 +75,18 @@ main h2::before{
     font-size: 0.9rem;
     color: rgba(0, 0, 0, 0.5);
     margin-bottom: 0.9rem;
+
+
 }
 
 .input-field input::placeholder{
     color: rgba(0, 0, 0, 0.5);
 }
 
+form .input-field:first-child{
+    margin-bottom: 1.5rem;
+
+}
 
 .input-field .underline::before{
     content: "";
@@ -83,7 +103,7 @@ main h2::before{
     position: absolute;
     height: 2px;
     width: 50%;
-    bottom: -7px;
+    bottom: -5px;
     left: 0;
     background: linear-gradient(45deg, #3a9b73, #31db94);
     transform: scaleX(0);
@@ -116,8 +136,6 @@ form input[type="submit"] {
 form input[type="submit"]:hover{
     letter-spacing: 0.5px;
     background: linear-gradient(to left, #5ce1e6, #5ce1e6);
-
-
 }
 
 .footer{
@@ -153,7 +171,7 @@ form input[type="submit"]:hover{
 }
 
 .footer .social-field.google{
-    background: linear-gradient(to left, #be6156, #be6156);
+        background: linear-gradient(to left, #be6156, #be6156);
 }
 
 .footer .social-field.linkedin{

@@ -34,6 +34,11 @@ class cadaa(ModelForm):
             'email',
             'senha',
         ]
+
+class Redefinir(forms.Form):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Digite seu email'}))
+    senha = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'Digite sua senha'}))
+
         
 
         

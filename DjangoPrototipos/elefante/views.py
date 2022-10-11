@@ -1,22 +1,19 @@
-from django.shortcuts import render, redirect
-from .forms import Cadastro, Registro, cadaa
-from .models import DadosCadastro
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Paper, Prova, DadosCadastro
+from .forms import *
+
 # Create your views here.
 
-
-def movel(request):
+def movel(request, link_prova):
+    prova = get_object_or_404(Prova, link=link_prova)
     if request.method == 'GET':
-        return render(request, 'elefante/telacriacao.html')
+        form = Cadastro()
     else:
         form = Cadastro(request.POST)
         if form.is_valid():
             cadastro = form.save()
             form = Cadastro()
-            return render(request, 'elefante/telacriacao.html', {'form': form})
-
-        else:
-            form = Cadastro()
-            return render(request, 'elefante/telacriacao.html', {'form': form})
+    return render(request, 'elefante/telacriacao.html', {'form': form, 'prova': prova})
 
 def sign(request):
     if request.method == 'GET':
@@ -32,6 +29,7 @@ def sign(request):
         else:            
             form = Registro()
             return redirect('login')
+
 def cadastrin(request):
     if request.method == 'GET':
         form = cadaa()
@@ -52,4 +50,17 @@ def cadastrin(request):
             else:
                 form = cadaa()
                 return redirect('cadastro')
+#
+# def redefinir(request, id):
+#     aa = get_object_or_404(DadosCadastro, id=id_usuario)
+#     form = Redefinir(request.POST)
+#
+#     if request.method == 'POST':
+#
+#
+#
+
+
+def homepage(request):
+    return render(request, 'elefante/telahomepage.html')
 
