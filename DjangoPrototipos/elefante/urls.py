@@ -6,7 +6,8 @@ urlpatterns = [
     path('home/', views.homepage, name='homepage'),
     path('cadastro/', views.cadastrin, name='cadastro'),
     path('criador/<str:link_prova>', views.movel, name='home'),
-    path('index/', views.movel, name='criacao'),
+    path('res/<str:link_prova>', views.resolver, name='resol'),
+    # path('index/', views.movel, name='criacao'),
     path('login/', views.sign, name='login'),
     path('redefinir/', views.sign, name='redefinir'),
 ]
