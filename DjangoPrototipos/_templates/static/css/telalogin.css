@@ -144,6 +144,12 @@ form input[type="submit"]:hover{
     background: linear-gradient(to left, #5ce1e6, #5ce1e6);
 }
 
+a{
+   color: black;
+   text-decoration: none;
+}
+
+
 .footer{
     display: flex;
     flex-direction: column;
