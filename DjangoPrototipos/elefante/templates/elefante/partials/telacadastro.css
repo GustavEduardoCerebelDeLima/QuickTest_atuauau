@@ -18,7 +18,7 @@ body{
 main.container{
     background: #fff;
     width: 350px;
-    height: 40vh;
+    height:66vh;
     padding: 6rem;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
@@ -38,6 +38,10 @@ main h2{
     font-weight: 800;
     margin-bottom: 1rem;
     position: relative;
+}
+
+.rede{
+margin-top: 5%;
 }
 
 main h2::before{
@@ -76,6 +80,12 @@ main h2::before{
     bottom: -5px;
     left: 0;
     background: rgba(90, 248, 235, 0.2);
+}
+
+form .input-field:first-child{
+    margin-bottom: 1.5rem;
+    width: 50%;
+
 }
 
 .input-field .underline::after{

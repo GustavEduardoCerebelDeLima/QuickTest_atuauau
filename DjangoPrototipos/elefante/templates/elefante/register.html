@@ -14,16 +14,29 @@
 <body> 
     <main class="container">
         <div class="img">
-            <img src="{% static '/Logo_TCC.png' %}" alt="logo do site">
+            <img src="{% static 'i/Logo_TCC.png' %}" alt="logo do site">
         </div>
         <h2>Criar conta</h2>
+        <br>
         <form action="" method="POST">
             <div class="input-field">
                 {% csrf_token %}
-                
-                {{form|crispy}}
+<!--                {{form|crispy}}-->
+                    <div>Username*
+                        {{form.username}}
+                    </div>
+                    <div class="input-group">Email*
+                        {{form.email}}
+                    </div>
+                    <div>Senha*
+                        {{form.password1}}
+                    </div>
             </div>
         <input type="submit" value="Finalizar Cadastro">
+
+            <div class="rede">
+                <a href="/accounts/login" id="nao_tem">Já tenho conta</a>
+            </div>
         </form>
     </main>
     

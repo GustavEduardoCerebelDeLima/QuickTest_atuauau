@@ -8,23 +8,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/5dd5fe0132.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2? family= Open+Sans:wght@300;400;700 & family= Poppins:wght@100;200;300;400;500 & display=trocar">
-    <style>{% include 'elefante/partials/telalogin.css' %}</style>
+    <style>{% include 'static/css/telalogin.css' %}</style>
     <title>Tela login</title>
 </head>
 <body>
     <main class="container">
         <div class="img">
-            <img src="{% static '/Logo_TCC.png' %}" alt="Logo site" class="">
+            <img src="{% static 'i/Logo_TCC.png' %}" alt="Logo site" class="">
         </div>
         <h2>Login</h2>
         <form id="area2" class="child" action="." method="POST">
             <div class="input-field">
-                {% csrf_token %}
-                {{form|crispy}}
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ next }}">
+                    {{form|crispy}}
             </div>
-        <input type="submit" value="Continue">
+        <input type="submit" value="Continuar">
             <div class="rede">
-                <a href="/cadastro" id="nao_tem">Não tenho cadastro</a> <a href="/redefinir" id="redefinir">Redefinir senha</a>
+                <a href="/" id="nao_tem">Não tenho conta</a>
             </div>
         </form>
     </main>
